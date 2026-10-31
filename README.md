@@ -73,14 +73,13 @@ Kemudian buka alamat lokal yang ditampilkan di terminal.
 
 ## 📁 Struktur Proyek
 
-```text
 AkazaWebsiteV2/
 ├── index.html       # Struktur dan konten halaman
 ├── style.css        # Tampilan visual dan layout responsif
 ├── script.js        # Animasi dan interaksi website
 ├── img/             # Gambar dan video yang digunakan
+│   └── demon-slayer.mp3  # Musik background website
 └── README.md        # Dokumentasi proyek
-```
 
 ## 🌐 Temukan Saya
 

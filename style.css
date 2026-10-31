@@ -1614,3 +1614,82 @@ html.has-comet * {
   color: #fff;
   text-shadow: 0 0 calc(40 * var(--u)) rgba(185, 140, 255, 0.45);
 }
+
+
+/* =========================================
+   TOMBOL BACKGROUND MUSIC
+========================================= */
+.music-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 132px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(12, 14, 30, 0.78);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  font: 700 11px/1 "Inter", sans-serif;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease,
+    border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.music-btn:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(63, 65, 120, 0.9);
+  box-shadow: 0 10px 32px rgba(80, 95, 255, 0.25);
+}
+
+.music-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.music-btn .music-icon {
+  font-size: 18px;
+  line-height: 0.8;
+}
+
+.music-btn.is-playing {
+  border-color: rgba(255, 138, 43, 0.8);
+  background: rgba(90, 42, 25, 0.88);
+}
+
+.music-btn.is-playing .music-icon {
+  color: #ffb16b;
+  animation: musicPulse 1s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.22); }
+}
+
+@media (max-width: 600px) {
+  .music-btn {
+    right: 14px;
+    bottom: 14px;
+    min-width: 118px;
+    padding: 11px 14px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music-btn,
+  .music-btn .music-icon {
+    transition: none;
+    animation: none !important;
+  }
+}

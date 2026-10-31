@@ -272,3 +272,58 @@ document.querySelectorAll(".nav a").forEach(a => {
 document.getElementById("btnTop").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+
+/* =========================================
+   BACKGROUND MUSIC
+   Musik mulai setelah pengunjung menekan tombol.
+   Browser umumnya memblokir autoplay bersuara.
+========================================= */
+(() => {
+  const music = document.getElementById("bgMusic");
+  const button = document.getElementById("musicBtn");
+
+  if (!music || !button) return;
+
+  const label = button.querySelector(".music-label");
+  const icon = button.querySelector(".music-icon");
+
+  music.volume = 0.35;
+
+  function updateMusicButton(isPlaying) {
+    button.classList.toggle("is-playing", isPlaying);
+    button.setAttribute("aria-pressed", String(isPlaying));
+    button.setAttribute(
+      "aria-label",
+      isPlaying ? "Matikan musik latar" : "Putar musik latar"
+    );
+
+    if (label) label.textContent = isPlaying ? "MUSIC ON" : "MUSIC OFF";
+    if (icon) icon.textContent = isPlaying ? "♫" : "♪";
+  }
+
+  button.addEventListener("click", async () => {
+    if (music.paused) {
+      try {
+        await music.play();
+        updateMusicButton(true);
+      } catch (error) {
+        updateMusicButton(false);
+        console.error(
+          "Musik tidak dapat diputar. Pastikan file img/demon-slayer.mp3 tersedia dan formatnya benar.",
+          error
+        );
+        if (label) label.textContent = "AUDIO ERROR";
+      }
+    } else {
+      music.pause();
+      updateMusicButton(false);
+    }
+  });
+
+  music.addEventListener("play", () => updateMusicButton(true));
+  music.addEventListener("pause", () => updateMusicButton(false));
+  music.addEventListener("ended", () => updateMusicButton(false));
+
+  updateMusicButton(false);
+})();
